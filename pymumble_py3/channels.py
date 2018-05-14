@@ -48,7 +48,7 @@ class Channels(dict):
         
         for name in tree:  # going up the tree
             found = False
-            for subchannel in self.get_childs(current).values():
+            for subchannel in self.get_children(current).values():
                 if subchannel["name"] == name:
                     current = subchannel
                     found = True
@@ -60,22 +60,22 @@ class Channels(dict):
                
         return current
     
-    def get_childs(self, channel):
-        """Get the childs of a channel in a list"""
-        childs = list()
+    def get_children(self, channelId):
+        """Get the children of a channel in a list"""
+        children = list()
         
         for item in self.values():
-            if item["parent"] == channel["channel_id"]:
-                childs.append(item)
+            if item['channel_id'] != 0 and item['parent'] == channelId:
+                children.append(item)
                 
-        return childs
+        return children
     
     def get_descendants(self, channel):
         """Get all the descendant of a channel, in nested lists"""
         descendants = list()
         
-        for subchannel in channel.get_childs():
-            descendants.append(subchannel.get_childs())
+        for subchannel in channel.get_children():
+            descendants.append(subchannel.get_children())
             
         return descendants
     

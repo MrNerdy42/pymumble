@@ -210,13 +210,13 @@ It is again a `dict` by channel ids (root=0) containing all the Channel objects.
 Search, starting from the root for every element a subchannel with the same name.
 Return the channel object or raise a `UnknownChannelError` exception.
 
-> Mumble.channels.get_childs(channel_id)
+> Mumble.channels.get_children(channel_id)
 
-Return a list of all the children objects for a channel id.
+Return a list of the channles directly below this id
 
 > Mumble.channels.get_descendants(channel_id)
 
-Return a (nested) list of the channels above this id.
+Return a nested list of _all_ the channels blow this id
 
 > Mumble.get_tree(channel_id)
 
