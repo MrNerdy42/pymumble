@@ -4,7 +4,7 @@ PYMUMBLE python library
 Description
 -----------
 
-This is a fork of the the library [](https://github.com/azlux/pymumble). Most of the documentation and work is his. I created this fork to fix a few bugs that made it unuseable for me.
+This is a fork of the the library [https://github.com/azlux/pymumble](https://github.com/azlux/pymumble). Most of the documentation and work is his. I created this fork to fix a few bugs that made it unuseable for me.
 
 Requirements/installation
 -------------------------
