@@ -60,12 +60,12 @@ class Channels(dict):
                
         return current
     
-    def get_children(self, channelId):
+    def get_children(self, channel):
         """Get the children of a channel in a list"""
         children = list()
         
         for item in self.values():
-            if item['channel_id'] != 0 and item['parent'] == channelId:
+            if item['channel_id'] != 0 and item['parent'] == channel['channel_id']:
                 children.append(item)
                 
         return children

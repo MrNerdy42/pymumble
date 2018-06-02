@@ -32,7 +32,7 @@ Set the application name that will be sent to the server. Must be done before th
 
 > Mumble.set_loop_rate(float)
 
-Set in second how long the library will wait for an incoming message, which slowdown the loop.
+Set in second how long the library will wait for an incoming message, which slowdown the loop.tup
 Must be small enough for the audio treatment you need, but if too small it will consume too much CPU
 0.01 is the default and seems to be small enough to send audio in 20ms packets.
 For application that just receive sound, bigger should be enough (like 0.05).
@@ -51,7 +51,7 @@ Manage the different available callbacks.
 It is basically a `dict` of the available callbacks and the methods to manage them.
 
 Callback names are in `pymumble.constants` module, starting with `PYMUMBLE_CLBK_`
-- `PYMUMBLE_CLBK_CONNECTED`: connection succeeded
+- `PYMUMBLE_CLBK_CONNECTED`: called wehn connection succeeded
 - `PYMUMBLE_CLBK_CHANNELCREATED`: send the created channel object as parameter
 - `PYMUMBLE_CLBK_CHANNELUPDATED`: send the updated channel object and a dict with all the modified fields as parameter
 - `PYMUMBLE_CLBK_CHANNELREMOVED`: send the removed channel object as parameter
@@ -59,7 +59,7 @@ Callback names are in `pymumble.constants` module, starting with `PYMUMBLE_CLBK_
 - `PYMUMBLE_CLBK_USERUPDATED`: send the updated user object and a dict with all the modified fields as parameter
 - `PYMUMBLE_CLBK_USERREMOVED`: send the removed user object and the mumble message as parameter
 - `PYMUMBLE_CLBK_SOUNDRECEIVED`: send the user object that received the sound and the SoundChunk object itself
-- `PYMUMBLE_CLBK_TEXTMESSAGERECEIVED`: send the received message
+- `PYMUMBLE_CLBK_TEXTMESSAGERECEIVED`: send the received message (see TextMessage object)
 
 **Callbacks are executed within the library looping thread. Keep it's work short or you could have jitter issues!**
 
@@ -88,8 +88,7 @@ Remove all defined callback functions for this callback.
 Return the list of all the available callbacks. Better use the constants though.
 
 ## Users object (accessible through Mumble.users)
-Store the users connected on the server. For the application, it is basically only interesting as a `dict` of `User` objects,
-which contain the actual information.
+Store the users connected on the server by session id. For the application, it is basically only interesting as a `dict` of `User` objects, which contain the actual information.
 
 > Mumble.users[int]
 
@@ -108,8 +107,8 @@ Contain the session number of the `pymumble` connection itself.
 Is a shortcut to `Mumble.users[Mumble.users.myself_session]`, pointing to the User object of the current connection.
 
 ## User object (accessible through Mumble.users[session] or Mumble.users.myself
-Contain the users information and method to act on them.
-User also contain an instance of the SoundQueue object, containing the audio received from this user.
+Contain the users information and methods to act on them.
+User objects also contain an instance of the SoundQueue object, containing the audio received from this user.
 
 > User.sound
 
